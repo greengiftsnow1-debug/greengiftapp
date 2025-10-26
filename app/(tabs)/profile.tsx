@@ -1,0 +1,107 @@
+import { useRouter } from 'expo-router';
+import { signOut } from 'firebase/auth';
+import React from 'react';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useAuth } from '../../contexts/authContext';
+import { auth } from '../../firebaseConfig';
+
+export default function ProfileScreen() {
+  const { user } = useAuth();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    router.replace('/auth/login');
+  };
+
+  return (
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.profileBox}>
+        <Image
+          source={require('../../assets/avtar.png')}
+          style={styles.avatar}
+        />
+        <Text style={styles.name}>{user?.displayName || 'Green Gifter'}</Text>
+        <Text style={styles.phone}>{user?.phoneNumber || 'Not available'}</Text>
+      </View>
+
+      <View style={styles.menuBox}>
+        <Text style={styles.sectionTitle}>Your Activity</Text>
+
+        <TouchableOpacity style={styles.menuItem} onPress={() => router.push('/orders')}>
+          <Text style={styles.menuText}>🛍️ My Orders</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.menuItem} onPress={() => router.push('/payments')}>
+          <Text style={styles.menuText}>💳 Payment History</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.menuItem} onPress={() => router.push('/terms')}>
+          <Text style={styles.menuText}>📜 Terms & Conditions</Text>
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+        <Text style={styles.logoutText}>🚪 Logout</Text>
+      </TouchableOpacity>
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 24,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+  },
+  profileBox: {
+    alignItems: 'center',
+    marginBottom: 30,
+  },
+  avatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginBottom: 12,
+  },
+  name: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#4CAF50',
+  },
+  phone: {
+    fontSize: 16,
+    color: '#666',
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 12,
+  },
+  menuBox: {
+    width: '100%',
+    paddingHorizontal: 12,
+    marginBottom: 20,
+  },
+  menuItem: {
+    backgroundColor: '#F1F8E9',
+    padding: 14,
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  menuText: {
+    fontSize: 16,
+  },
+  logoutButton: {
+    backgroundColor: '#f44336',
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    marginTop: 10,
+  },
+  logoutText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+});

@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
-
+import AppHeader from "../components/AppHeader";
+<AppHeader title="My Profile" showBack={false} />
 const payments = [
   { id: '1', amount: 370, method: 'UPI', date: '2025-07-14' },
   { id: '2', amount: 480, method: 'Razorpay', date: '2025-07-12' },

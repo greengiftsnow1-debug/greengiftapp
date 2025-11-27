@@ -1,4 +1,6 @@
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import AppHeader from "../../components/AppHeader";
+<AppHeader title="My Profile" showBack={false} />
 
 const plants = [
   { id: '1', name: 'Peace Lily', price: 299, image: require('../../assets/plant1.jpg') },
@@ -33,7 +35,7 @@ export default function ShopScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#FAFAF4', paddingHorizontal: 10, paddingTop: 20 },
+  container: { flex: 1, backgroundColor: '#FAFAF4', paddingHorizontal: 10, paddingTop: 40 },
   heading: { fontSize: 24, fontWeight: 'bold', color: '#4CAF50', marginBottom: 20, textAlign: 'center' },
   row: { justifyContent: 'space-between' },
   card: {

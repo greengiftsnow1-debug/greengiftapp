@@ -1,5 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text } from 'react-native';
+import AppHeader from "../components/AppHeader";
+<AppHeader title="My Profile" showBack={false} />
 
 export default function TermsScreen() {
   return (

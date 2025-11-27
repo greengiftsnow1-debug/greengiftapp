@@ -1,5 +1,6 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
+ import AppHeader from "../../components/AppHeader";
 import {
   FlatList,
   Image,
@@ -11,6 +12,8 @@ import {
 import { useCart } from '../../contexts/cartContext';
 
 export default function CartScreen() {
+ 
+  <AppHeader title="My Profile" showBack={false} />
   const { cart, removeFromCart, clearCart } = useCart();
   const router = useRouter();
 
@@ -75,7 +78,7 @@ export default function CartScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, backgroundColor: '#fff' },
+  container: { flex: 1, padding: 40, backgroundColor: '#fff' },
   title: { fontSize: 24, fontWeight: 'bold', marginBottom: 16, color: '#4CAF50' },
   empty: { textAlign: 'center', marginTop: 50, fontSize: 16 },
   card: {
